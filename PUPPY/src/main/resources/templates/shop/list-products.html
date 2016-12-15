@@ -1,0 +1,28 @@
+<main>
+    <div class="container body-content">
+        <h1>Category - <th:block th:text="${category.name}"></th:block></h1>
+        <div class="row">
+            <th:block th:each="product : ${products}">
+                <div class="col-md-6">
+                    <article>
+                        <header>
+                            <h2 th:text="${product.name}"></h2>
+                        </header>
+
+                        <p th:text="${product.price}"></p>
+
+
+
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs"
+                                   th:href="@{/product/{id}(id=${product.id})}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
