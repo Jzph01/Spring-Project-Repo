@@ -68,6 +68,8 @@ public class Article {
         return this.getContent().substring(0,this.getContent().length()/2)+"...";
     }
 
+    @Transient
+    public String getImagePath(){return  "/images/"+this.getId()+".jpeg";}
 
 
 }

@@ -46,4 +46,8 @@ public class Category {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
+
+    @Transient
+    public String getImagePath(){return  "/images/"+"0"+this.getId()+".jpeg";}
 }

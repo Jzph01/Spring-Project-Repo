@@ -1,28 +1,34 @@
 <main>
-    <div class="container body-content">
+    <div class="container">
         <h1>Category - <th:block th:text="${category.name}"></th:block></h1>
         <div class="row">
             <th:block th:each="product : ${products}">
-                <div class="col-md-6">
-                    <article>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <a  th:href="@{/product/{id}(id=${product.id})}" >
+                            <img  width="200" height="200"
+                                  th:src="@{${product.imagePath}}" class="img-polaroid" />
+                        </a>
+
+                        <div class="caption">
+
                         <header>
                             <h2 th:text="${product.name}"></h2>
                         </header>
-
                         <p th:text="${product.price}"></p>
-
-
-
-
                         <footer>
-                            <div class="pull-right">
-                                <a class="btn btn-default btn-xs"
+                            <p align="center">
+                                <a  class="btn btn-primary btn-block"
                                    th:href="@{/product/{id}(id=${product.id})}">Read more &raquo;</a>
-                            </div>
+                            </p>
                         </footer>
-                    </article>
-                </div>
+
+                        </div>
+                    </div>
+               </div>
             </th:block>
         </div>
     </div>
+
 </main>

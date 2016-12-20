@@ -1,14 +1,23 @@
 <main>
-    <div class="container body-content">
+    <div class="container">
         <div class="row">
+
             <div class="col-md-6" th:each="category : ${categories}">
-                <header>
+                <div class="thumbnail">
                     <h2>
-                        <a th:href="@{/category/{id}(id=${category.id})}" th:text="${category.name + ' (' + #sets.size(category.products) + ')'}">
+                       <p align="center">
+                           <a  th:href="@{/category/{id}(id=${category.id})}" > <img  width="200" height="200"
+                                           th:src="@{${category.imagePath}}" class="img-polaroid" />
+                           </a>
+                       </p>
+                        <p align="center">
+                        <a  th:href="@{/category/{id}(id=${category.id})}" th:text="${category.name + ' (' + #sets.size(category.products) + ')'}">
                         </a>
+                        </p>
                     </h2>
-                </header>
+                </div>
             </div>
+
         </div>
     </div>
 </main>

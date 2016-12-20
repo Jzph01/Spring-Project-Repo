@@ -80,6 +80,7 @@ public class ArticleController {
         }
 
         Article article = this.articleRepository.findOne(id);
+
         model.addAttribute("article", article);
         model.addAttribute("view", "article/details");
 

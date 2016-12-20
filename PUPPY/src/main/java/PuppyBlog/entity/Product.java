@@ -68,4 +68,7 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Transient
+    public String getImagePath(){return  "/images/"+"00"+this.getId()+".jpeg";}
 }

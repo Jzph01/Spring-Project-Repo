@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
+
+
+
+
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+.group:after {
+    clear: both;
+}
+.group {
+    clear: both;
+    *zoom: 1;
+}
+section {
+    float: left;
+    margin: 0 1.5%;
+    width: 63%;
+}
+aside {
+    float: right;
+    margin: 0 1.5%;
+    width: 30%;
+}
