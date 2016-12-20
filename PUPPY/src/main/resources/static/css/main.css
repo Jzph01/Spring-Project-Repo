@@ -26,3 +26,38 @@ aside {
     margin: 0 1.5%;
     width: 30%;
 }
+
+.blogShort{ border-bottom:2px solid #ddd;}
+.margin10{margin-bottom:10px; margin-right:10px;}
+
+
+.button-read:link {
+    color: green;
+    text-decoration: none;
+}
+
+/* visited link */
+.button-read:visited {
+    color: green;
+    text-decoration: none;
+}
+
+/* mouse over link */
+.button-read:hover {
+    color: blue;
+    text-decoration: none;
+}
+
+/* selected link */
+.button-read:active {
+    color: grey;
+    text-decoration: none;
+}
+
+.bck {
+    background: lightgrey;
+}
+
+.bckshop {
+    background: ghostwhite;
+}

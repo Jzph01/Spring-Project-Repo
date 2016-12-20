@@ -3,11 +3,11 @@
         <div class="row">
 
             <div class="col-md-6" th:each="category : ${categories}">
-                <div class="thumbnail">
+                <div class="thumbnail bckshop">
                     <h2>
                        <p align="center">
-                           <a  th:href="@{/category/{id}(id=${category.id})}" > <img  width="200" height="200"
-                                           th:src="@{${category.imagePath}}" class="img-polaroid" />
+                           <a  th:href="@{/category/{id}(id=${category.id})}" >
+                               <img th:src="@{${category.imagePath}}" class=" img-responsive thumb  img-thumbnail" />
                            </a>
                        </p>
                         <p align="center">

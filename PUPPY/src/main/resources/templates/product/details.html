@@ -2,8 +2,8 @@
     <div class="container body-content">
         <div class="row">
             <div class="col-md-4">
-                <img  width="300" height="300"
-                      th:src="@{${product.imagePath}}"/>
+                <img  width="500" height="500"
+                      th:src="@{${product.imagePath}}" class=" img-responsive thumb  img-thumbnail"/>
             </div>
             <div class="col-md-8">
                 <article>
@@ -26,7 +26,7 @@
                             <a class="btn btn-danger btn-xs" th:href="@{/product/delete/{id}(id = ${product.id})}">Delete</a>
                             </th:block>
 
-                            <a class="btn btn-default btn-xs" th:href="@{/shop}">back &raquo;</a>
+                            <a class="button-read" th:href="@{/category/{id}(id=${category.id})}"> <b>Back &raquo;</b></a>
                         </div>
                     </footer>
                 </article>

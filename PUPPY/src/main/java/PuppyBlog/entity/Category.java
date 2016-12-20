@@ -2,6 +2,7 @@ package PuppyBlog.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -9,7 +10,7 @@ import java.util.Set;
 public class Category {
     private Integer id;
     private String name;
-    Set<Product> products;
+    private Set<Product> products;
 
     public Category() {
     }

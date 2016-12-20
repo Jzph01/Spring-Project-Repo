@@ -1,14 +1,14 @@
 <main>
     <div class="container">
-        <h1>Category - <th:block th:text="${category.name}"></th:block></h1>
+        <h1 style="color:blue;">Category - <th:block th:text="${category.name}"></th:block></h1>
         <div class="row">
             <th:block th:each="product : ${products}">
                 <div class="col-md-4">
-                    <div class="thumbnail">
+                    <div class="thumbnail bck">
 
                         <a  th:href="@{/product/{id}(id=${product.id})}" >
-                            <img  width="200" height="200"
-                                  th:src="@{${product.imagePath}}" class="img-polaroid" />
+                            <img
+                                  th:src="@{${product.imagePath}}" class=" img-responsive thumb  img-thumbnail" />
                         </a>
 
                         <div class="caption">

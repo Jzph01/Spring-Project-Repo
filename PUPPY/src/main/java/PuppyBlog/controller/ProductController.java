@@ -66,6 +66,8 @@ public class ProductController {
             model.addAttribute("user", entityUser);
         }
         Product product = this.productRepository.findOne(id);
+        Category category = product.getCategory();
+        model.addAttribute("category", category);
         model.addAttribute("product", product);
         model.addAttribute("view", "product/details");
         return "base-layout";
