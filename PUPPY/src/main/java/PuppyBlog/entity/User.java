@@ -24,6 +24,8 @@ public class User {
 
         this.roles = new HashSet<>();
         this.articles = new HashSet<>();
+        this.comments = new HashSet<>();
+
     }
 
     public User() {
@@ -104,11 +106,26 @@ public class User {
     public boolean isAuthorOfArticle(Article article){
         return Objects.equals(this.getId(),article.getAuthor().getId());
     }
+    @Transient
+    public  boolean isAuthorOfTheComment(Comment comment){
+        return Objects.equals(this.getId(),comment.getAuthor().getId());
+    }
 
     @Transient
     public boolean isAuthor(){
         return this.getRoles()
                 .stream()
                 .anyMatch(role -> role.getName().equals("ROLE_AUTHOR"));
+    }
+
+    private Set<Comment> comments;
+
+    @OneToMany(mappedBy = "author")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

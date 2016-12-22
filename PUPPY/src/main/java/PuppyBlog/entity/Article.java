@@ -3,6 +3,9 @@ package PuppyBlog.entity;
 import org.springframework.security.crypto.codec.Base64;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -12,6 +15,8 @@ public class Article {
     private String title;
     private String content;
     private User author;
+    private Set<Comment> comments;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +63,7 @@ public class Article {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.comments = new HashSet<>();
     }
 
     public Article() {
@@ -71,5 +77,12 @@ public class Article {
     @Transient
     public String getImagePath(){return  "/images/"+this.getId()+".jpeg";}
 
+    @OneToMany(mappedBy = "article")
+    public Set<Comment> getComments() {
+        return comments;
+    }
 
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 }

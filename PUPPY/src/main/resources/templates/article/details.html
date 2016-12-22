@@ -1,11 +1,11 @@
 <main>
-    <div class="container body-content">
+    <div class="container ">
         <div class="row">
             <div class="col-md-4">
                 <img  width="300" height="300"
-                      th:src="@{${article.imagePath}}"/>
+                      th:src="@{${article.imagePath}}" class=" img-responsive thumb  img-thumbnail"/>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 blogShort">
                 <article>
                     <header>
                         <h2 th:text="${article.title}"></h2>
@@ -13,10 +13,11 @@
 
                     <p th:text="${article.content}"> </p>
 
-                    <small class="author" th:text="${article.author.fullName}"></small>
+
 
                     <footer>
-
+                        <b>by </b>
+                        <span style="color: green"> <b class="author" th:text="${article.author.fullName}"></b></span>
                         <div class="pull-right">
 
                             <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthorOfArticle(article)}">
@@ -29,6 +30,60 @@
                     </footer>
                 </article>
             </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+
+
+                <form class="form-horizontal well" th:action="@{/comment/create/{id}(id = ${article.id})}" method="POST">
+                    <fieldset>
+                        <legend>New Comment:</legend>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="comment_C">Comment</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="4" id="comment_C" name="comment"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <a class="btn btn-default" th:href="@{/article/{id}(id = ${article.id})}">Cancel</a>
+                                <input type="submit" class="btn btn-primary"  value="Submit"/>
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+                </form>
+
+
+
+        <div >
+            <div >
+                <th:block th:each="comment : ${comments}">
+                    <div class="well">
+
+                        <b>Commented By </b>
+                        <span style="color: green"> <b class="author" th:text="${comment.author.fullName}"></b></span>
+
+                        <p th:text="${comment.comment}"></p>
+                        <div class="pull-right">
+                            <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthorOfTheComment(comment)}">
+                                <a class="btn btn-success btn-xs" th:href="@{/comment/edit/{id}(id = ${comment.id})}">Edit</a>
+                                <a class="btn btn-danger btn-xs" th:href="@{/comment/delete/{id}(id = ${comment.id})}">Delete</a>
+                            </th:block>
+                        </div>
+
+                    </div>
+                </th:block>
+            </div>
+        </div>
+
         </div>
     </div>
 </main>

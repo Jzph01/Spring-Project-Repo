@@ -1,6 +1,8 @@
 package PuppyBlog.controller;
 import PuppyBlog.entity.Category;
+import PuppyBlog.entity.Comment;
 import PuppyBlog.repository.CategoryRepository;
+import PuppyBlog.repository.CommentRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import PuppyBlog.bindingModel.ArticleBindingModel;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ArticleController {
@@ -32,6 +36,8 @@ public class ArticleController {
     private UserRepository userRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @GetMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
@@ -63,6 +69,8 @@ public class ArticleController {
 
     }
 
+
+
     @GetMapping("/article/{id}")
     public String details(Model model, @PathVariable Integer id){
         if(!this.articleRepository.exists(id)){
@@ -80,6 +88,11 @@ public class ArticleController {
         }
 
         Article article = this.articleRepository.findOne(id);
+
+        Set<Comment> comments = article.getComments();
+
+
+        model.addAttribute("comments", comments);
 
         model.addAttribute("article", article);
         model.addAttribute("view", "article/details");
@@ -142,6 +155,10 @@ public class ArticleController {
         Article article = this.articleRepository.findOne(id);
         if(!isUserAuthorOrAdmin(article)){
             return "redirect:/article/" + id;
+        }
+
+        for(Comment comment : article.getComments()){
+            this.commentRepository.delete(comment);
         }
 
         this.articleRepository.delete(article);

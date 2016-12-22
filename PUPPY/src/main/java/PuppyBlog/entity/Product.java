@@ -9,6 +9,7 @@ public class Product {
     private String name;
     private String price;
     private String description;
+    private Category category;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +58,7 @@ public class Product {
     public Product() {
     }
 
-    private Category category;
+
 
     @ManyToOne()
     @JoinColumn(nullable = false, name = "categoryId")

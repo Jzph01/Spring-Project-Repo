@@ -1,0 +1,24 @@
+<main>
+    <div class="container">
+        <h1 style="color:blue;">Article - <th:block th:text="${article.title}"></th:block></h1>
+        <div class="row">
+            <th:block th:each="comment : ${comments}">
+                <div class="col-md-4 " align="center">
+
+
+
+                    <p th:text="${comment.comment}"></p>
+                    <div class="pull-right">
+                        <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthorOfComment(comment)}">
+                            <a class="btn btn-success btn-xs" th:href="@{/comment/edit/{id}(id = ${comment.id})}">Edit</a>
+                            <a class="btn btn-danger btn-xs" th:href="@{/comment/delete/{id}(id = ${comment.id})}">Delete</a>
+                        </th:block>
+                    </div>
+
+
+                </div>
+            </th:block>
+        </div>
+    </div>
+
+</main>

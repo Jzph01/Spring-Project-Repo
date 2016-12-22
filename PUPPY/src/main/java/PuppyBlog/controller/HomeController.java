@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -67,6 +65,9 @@ public class HomeController {
         model.addAttribute("view", "shop/shopIndex");
         return "base-layout";
     }
+
+
+
     @GetMapping("/category/{id}")
     public String listProducts(Model model,@PathVariable Integer id){
         if(!this.categoryRepository.exists(id)){
@@ -75,15 +76,13 @@ public class HomeController {
         Category category = this.categoryRepository.findOne(id);
 
 
-        List<Product> productList = this.productRepository.findAll();
+        Set<Product> products = category.getProducts();
 
 
-        productList = productList.stream()
-                .sorted(Comparator.comparingInt(Product::getId).reversed())
-                .collect(Collectors.toList());
+
 
         model.addAttribute("category", category);
-        model.addAttribute("products", productList);
+        model.addAttribute("products", products);
         model.addAttribute("view", "shop/list-products");
 
         return "base-layout";
